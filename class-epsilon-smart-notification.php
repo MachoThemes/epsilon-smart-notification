@@ -27,7 +27,6 @@ class Epsilon_Smart_Notification {
 		foreach ( $need_check as $slug => $plugin ) {
 
 			if ( in_array( $slug, $this->options ) ) {
-				echo $slug;
 				continue;
 			}
 
