@@ -68,6 +68,7 @@ class Epsilon_Smart_Notification {
 
 		foreach ( $this->plugins as $slug => $plugin ) {
 			$notice_html .= '<div class="esn-plugin-card">';
+			$url = $this->create_plugin_link( $plugin['needs'], $slug );
 			if ( '' != $plugin['image'] ) {
 				$notice_html .= '<div class="esn-plugin-image" style="padding-right: 10px;">';
 				$notice_html .= '<img src="' . esc_url( $plugin['image'] ) . '" width="75" height="75">';
@@ -80,7 +81,7 @@ class Epsilon_Smart_Notification {
 			$notice_html .= '<div class="esn-plugin-link">';
 			$notice_html .= '<button type="button" class="notice-dismiss" data-dismiss="' . esc_attr( $slug ) . '"><span class="screen-reader-text">Dismiss this notice.</span></button>';
 			$notice_html .= '<span class="plugin-card-' . esc_attr( $slug ) . ' action_button ' . $plugin['needs'] . '">';
-				$notice_html .= '<a data-slug="' . esc_attr( $slug ) . '" data-action="' . esc_attr( $plugin['needs'] ) . '" class="esn-plugin-button ' . esc_attr( $plugin['class'] ) . '" href="' . esc_url( $plugin['url'] ) . '">' . esc_attr( $plugin['label'] ) . '</a>';
+				$notice_html .= '<a data-slug="' . esc_attr( $slug ) . '" data-action="' . esc_attr( $plugin['needs'] ) . '" class="esn-plugin-button ' . esc_attr( $plugin['class'] ) . '" href="' . esc_url( $url ) . '">' . esc_attr( $plugin['label'] ) . '</a>';
 			$notice_html .= '</span>';
 			$notice_html .= '</div>';
 			$notice_html .= '</div>';
@@ -228,8 +229,6 @@ class Epsilon_Smart_Notification {
 			$arr['class'] = 'deactivate-now button';
 			$arr['label'] = __( 'Deactivate now', 'text-domain' );
 		}
-
-		$arr['url'] = $this->create_plugin_link( $arr['needs'], $slug );
 
 		return $arr;
 	}
